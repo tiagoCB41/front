@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 229 231 235;
+  --background-end-rgb: 229 231 235;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 75 85 99;
+    --background-end-rgb: 75 85 99;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+}
+
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  filter: brightness(0.7);
+  z-index: -1;
+}
+
+.shadowbox{
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+
+.card-flip {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+  transform: rotateY(0deg);
+}
+
+.card-flip.flipped {
+  transform: rotateY(180deg);
+}
+
+.front, .back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s;
+  opacity: 1;
+}
+
+.card-flip.flipped .front {
+  opacity: 0;
+}
+
+.back {
+  transform: rotateY(180deg);
+  opacity: 0;
+}
+
+.card-flip.flipped .back {
+  opacity: 1;
+}
